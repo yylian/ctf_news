@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from telegram.ext import Updater
 from telegram import ParseMode
 from markdownify import markdownify as md
-from hashlib import sha256
 import sys
 import time
 
@@ -33,9 +32,6 @@ def main(bot, chat_id):
     last_message_date = get_last_message_date(bot, chat_id)
 
     entries = filter_entries(entries, last_message_date)
-
-    print(entries)
-
     send_messages(entries, bot, chat_id)
 
 
@@ -130,16 +126,12 @@ def send_messages(entries, bot, chat_id):
 
         bot.send_message(chat_id=chat_id, text=message, parse_mode=ParseMode.MARKDOWN)
 
-        print(message)
-
         time.sleep(1)
 
 
 def format_message(message):
 
-    html_tags_to_be_removed = ['h7']
-
-    message = md(message, strip=html_tags_to_be_removed)
+    message = md(message)
 
     return message
 
@@ -157,7 +149,7 @@ if __name__ == '__main__':
 
     except Exception as exception:
 
-        text = 'RUB - CHAT:\n'
+        text = 'CTF NEWS:\n'
         text += str(exception)
         text += exception.with_traceback()
 
