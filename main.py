@@ -7,6 +7,9 @@ import sys
 import time
 
 
+DESCRIPTION_APPENDIX = ' https://github.com/yylian/ctf_news'
+
+
 class Entry:
 
     def __init__(self, title, text, date):
@@ -81,7 +84,13 @@ def get_entries(html_content):
 
 def get_last_message_date(bot, chat_id):
 
-    last_date = bot.getChat(chat_id=chat_id).description
+    message = bot.getChat(chat_id=chat_id).description
+    last_date = ''
+
+    if message.endswith(DESCRIPTION_APPENDIX):
+
+        position_to_cut_appendix = -1 * len(DESCRIPTION_APPENDIX)
+        last_date = message[:position_to_cut_appendix]
 
     return last_date
 
@@ -90,7 +99,9 @@ def set_last_message_date(bot, message, chat_id):
 
     date = message.date
 
-    bot.set_chat_description(chat_id, date)
+    message = date + DESCRIPTION_APPENDIX
+
+    bot.set_chat_description(chat_id, message)
 
 
 def filter_entries(raw_entries, last_message_date):
@@ -151,6 +162,5 @@ if __name__ == '__main__':
 
         text = 'CTF NEWS:\n'
         text += str(exception)
-        text += exception.with_traceback()
 
         bot.send_message(fallback_id, text)
