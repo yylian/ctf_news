@@ -1,14 +1,14 @@
 # CTF_Parser
 
-Notification system for the FH Dortmund ctf news
+Notification system for the FH Dortmund CTF News
 
 ## Requirements
 
-* pythno3
-* requirements from `requirements.txt`
-* a bot created with the [botfather](https://core.telegram.org/bots)
+* Python 3
+* The dependencies from `requirements.txt`
+* A bot created with [botfather](https://core.telegram.org/bots)
 * A telegram channel or supergroup with the bot as an admin
-* Aplace to run this script repeatedly e. g. AWS Lambda or a VM with a cronjob
+* A place to run this script repeatedly e. g. AWS Lambda or github actions
 
 ## Usage
 

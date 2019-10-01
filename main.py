@@ -31,10 +31,10 @@ class Entry:
 def main(bot, chat_id):
 
     html_content = get_html_content()
-    entries = get_entries(html_content)
+    all_entries = get_entries(html_content)
     last_message_date = get_last_message_date(bot, chat_id)
 
-    entries = filter_entries(entries, last_message_date)
+    entries = filter_entries(all_entries, last_message_date)
     send_messages(entries, bot, chat_id)
 
 
