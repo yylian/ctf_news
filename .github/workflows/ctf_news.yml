@@ -1,4 +1,4 @@
-name: Python application
+name: CTF_News
 
 on:
   schedule:
@@ -19,6 +19,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Lint with flake8
+    - name: run Application
       run: |
-        python main.py BOT
+        python main.py  ${{ secrets.BOT_TOKEN }}
