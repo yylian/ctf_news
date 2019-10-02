@@ -149,18 +149,8 @@ def format_message(message):
 
 if __name__ == '__main__':
 
-    fallback_id = 145310771
     chat_id = -1001346269832
     token = get_telegram_token()
-    bot = Updater(token=token).bot
+    bot = Updater(token=token, use_context=True).bot
 
-    try:
-
-        main(bot, chat_id)
-
-    except Exception as exception:
-
-        text = 'CTF NEWS:\n'
-        text += str(exception)
-
-        bot.send_message(fallback_id, text)
+    main(bot, chat_id)
